@@ -2,6 +2,10 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+"""
+In this tutorial we use yolov4 algorithm to do object classification and localization on video frames. 
+
+"""
 vid = cv2.VideoCapture("/Users/eseosa/Downloads/YOLO-3-OpenCV/videos/traffic-cars.mp4")
 
 writer = None
