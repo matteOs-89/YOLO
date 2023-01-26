@@ -1,5 +1,5 @@
 # YOLO
-y
+
 What is YOLO (You Only Look Once)?
 
 YOLO is real time object detection algorithm, that uses fully convolutional Neural Networks and bounding box to perform classification and predict the class probability of the object present in each given image or frame grid. Therefore, it can be said that yolo models are used for object classifications and localization.
