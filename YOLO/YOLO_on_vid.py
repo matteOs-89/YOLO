@@ -11,13 +11,13 @@ with open("/Users/eseosa/Downloads/YOLO-3-OpenCV/yolo-coco-data/coco.names") as 
     coco_labels = [line.strip() for line in f] #Getting class label from coco datasets
 
 
-yolo_V3_model = cv2.dnn.readNetFromDarknet("/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.cfg",
+yolo_V4_model = cv2.dnn.readNetFromDarknet("/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.cfg",
                                              "/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.weights")
 
 
-model_layers_names = yolo_V3_model.getLayerNames()
+model_layers_names = yolo_V4_model.getLayerNames()
 
-output_layer = [model_layers_names[i -1] for i in yolo_V3_model.getUnconnectedOutLayers()]
+output_layer = [model_layers_names[i -1] for i in yolo_V4_model.getUnconnectedOutLayers()]
 
 threshold = 0.3
 probability_threshold = 0.5
@@ -39,9 +39,9 @@ while True:
 
     blob_frame = cv2.dnn.blobFromImage(frame, 1 / 255.0, (416, 416), swapRB=True, crop=False) #[1, 3, w, h]
 
-    yolo_V3_model.setInput(blob_frame)
+    yolo_V4_model.setInput(blob_frame)
 
-    output_from_Model = yolo_V3_model.forward(output_layer)
+    output_from_Model = yolo_V4_model.forward(output_layer)
 
     class_idx = []
     bounding_boxes = []
