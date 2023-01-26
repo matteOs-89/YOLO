@@ -2,6 +2,10 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+"""
+In this tutorial we use yolov4 algorithm to do object classification and localization on video frames. 
+"""
+
 vid = cv2.VideoCapture(0)
 
 writer = None
@@ -12,13 +16,13 @@ with open("/Users/eseosa/Downloads/YOLO-3-OpenCV/yolo-coco-data/coco.names") as 
     coco_labels = [line.strip() for line in f] #Getting class label from coco datasets
 
 
-yolo_V3_model = cv2.dnn.readNetFromDarknet("/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.cfg",
+yolo_V4_model = cv2.dnn.readNetFromDarknet("/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.cfg",
                                              "/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.weights")
 
 
-model_layers_names = yolo_V3_model.getLayerNames()
+model_layers_names = yolo_V4_model.getLayerNames()
 
-output_layer = [model_layers_names[i -1] for i in yolo_V3_model.getUnconnectedOutLayers()]
+output_layer = [model_layers_names[i -1] for i in yolo_V4_model.getUnconnectedOutLayers()]
 
 threshold = 0.3
 probability_threshold = 0.5
@@ -38,9 +42,9 @@ while True:
 
     blob_frame = cv2.dnn.blobFromImage(frame, 1 / 255.0, (416, 416), swapRB=True, crop=False) #[1, 3, w, h]
 
-    yolo_V3_model.setInput(blob_frame)
+    yolo_V4_model.setInput(blob_frame)
 
-    output_from_Model = yolo_V3_model.forward(output_layer)
+    output_from_Model = yolo_V4_model.forward(output_layer)
 
     class_idx = []
     bounding_boxes = []
@@ -90,8 +94,8 @@ while True:
             cv2.putText(frame, text, (x_min, y_min - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.5, box_color, 2)
 
 
-    cv2.namedWindow("yolo_v3", cv2.WINDOW_NORMAL)
-    cv2.imshow("yolo_v3", frame)
+    cv2.namedWindow("yolo_v4", cv2.WINDOW_NORMAL)
+    cv2.imshow("yolo_v4", frame)
     if cv2.waitKey(0) & 0xff == ord("q"):
         break
 
