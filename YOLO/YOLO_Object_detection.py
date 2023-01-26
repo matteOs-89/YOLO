@@ -2,6 +2,11 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+"""
+In this tutorial we use yolov4 algorithm to do object classification and localization. 
+
+"""
+
 image = cv2.imread("/Users/eseosa/Desktop/man-driving-a-small-car-BA0GEA.jpg")
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -20,15 +25,15 @@ with open("/Users/eseosa/Downloads/YOLO-3-OpenCV/yolo-coco-data/coco.names") as 
 
 # Retrieved pretrained YOLOV3 Weights and Parameters
 
-yolo_V3_model = cv2.dnn.readNetFromDarknet("/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.cfg",
+yolo_V4_model = cv2.dnn.readNetFromDarknet("/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.cfg",
                                              "/Users/eseosa/Desktop/YOLO-4-OpenCV/yolov4.weights")
 
 
-model_layers_names = yolo_V3_model.getLayerNames()
+model_layers_names = yolo_V4_model.getLayerNames()
 #print(model_layers_names)
 
-# Getting needed layers for yolov3
-output_layer = [model_layers_names[i -1] for i in yolo_V3_model.getUnconnectedOutLayers()]
+# Getting needed layers for yolov4
+output_layer = [model_layers_names[i -1] for i in yolo_V3_model.getUnconnectedOutLayers()] #Get yolo layers
 
 threshold = 0.3
 probability_threshold = 0.5
@@ -37,9 +42,9 @@ color = np.random.randint(0, 255, size=(len(coco_labels), 3), dtype="uint8") #Ra
 
 """Forward Pass"""
 
-yolo_V3_model.setInput(blob_image)
+yolo_V4_model.setInput(blob_image)
 
-output_from_Model = yolo_V3_model.forward(output_layer)
+output_from_Model = yolo_V4_model.forward(output_layer)
 
 class_idx = []
 bounding_boxes = []
