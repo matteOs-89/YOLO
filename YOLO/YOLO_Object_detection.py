@@ -33,7 +33,7 @@ model_layers_names = yolo_V4_model.getLayerNames()
 #print(model_layers_names)
 
 # Getting needed layers for yolov4
-output_layer = [model_layers_names[i -1] for i in yolo_V3_model.getUnconnectedOutLayers()] #Get yolo layers
+output_layer = [model_layers_names[i -1] for i in yolo_V4_model.getUnconnectedOutLayers()] #Get yolo layers
 
 threshold = 0.3
 probability_threshold = 0.5
