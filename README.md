@@ -6,7 +6,7 @@ YOLO is real time object detection algorithm, that uses fully convolutional Neur
 
 
 
-YOLO networks are faster and computational more cost effective than some of famous older object detection models such as Region with convolutional neural networks (R CNN), Fast R CNN and Faster CNN, reason been, YOLO models use only look once technique. This means the model only looks at the image once to localize the object present within and compute it’s confidence score. The confidence score is how sure the model is that an object is present and how certain it is of the class of the object in the grid box. YOLO predicts multiple bounding boxes per grid cell.
+YOLO networks are faster and computational cost effective than some of the well known older object detection models such as Region with convolutional neural networks (R CNN), Fast R CNN and Faster CNN, reason been, YOLO models uses only look once technique. This means the model only looks at the image once to localize the object present within, and compute it’s confidence score. The confidence score is how sure the model is that an object is present and how certain it is of the class of the object located the grid box. YOLO predicts multiple bounding boxes per grid cell.
 
 
 YOLO models are non-maximum suppression (NMS). 
